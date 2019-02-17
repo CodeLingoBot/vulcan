@@ -138,12 +138,12 @@ func NewHDRHistogram(low, high int64, sigfigs int) (h *HDRHistogram, err error) 
 	return h, err
 }
 
-// Returns latency at quantile with microsecond precision
+// LatencyAtQuantile returns latency at quantile with microsecond precision
 func (h *HDRHistogram) LatencyAtQuantile(q float64) time.Duration {
 	return time.Duration(h.ValueAtQuantile(q)) * time.Microsecond
 }
 
-// Records latencies with microsecond precision
+// RecordLatencies: Records latencies with microsecond precision
 func (h *HDRHistogram) RecordLatencies(d time.Duration, n int64) error {
 	return h.RecordValues(int64(d/time.Microsecond), n)
 }

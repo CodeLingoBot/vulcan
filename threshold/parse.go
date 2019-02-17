@@ -7,7 +7,7 @@ import (
 	"github.com/mailgun/predicate"
 )
 
-// Parses expression in the go language into Failover predicates
+// ParseExpression: Parses expression in the go language into Failover predicates
 func ParseExpression(in string) (Predicate, error) {
 	p, err := predicate.NewParser(predicate.Def{
 		Operators: predicate.Operators{

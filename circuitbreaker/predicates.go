@@ -11,7 +11,7 @@ import (
 	"github.com/mailgun/vulcan/threshold"
 )
 
-// MustParseExpresison calls ParseExpression and panics if expression is incorrect, for use in tests
+// MustParseExpression: calls ParseExpression and panics if expression is incorrect, for use in tests
 func MustParseExpression(in string) threshold.Predicate {
 	e, err := ParseExpression(in)
 	if err != nil {

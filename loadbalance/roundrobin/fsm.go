@@ -55,7 +55,7 @@ func (fsm *FSMHandler) Init(endpoints []*WeightedEndpoint) {
 	fsm.timer = fsm.timeProvider.UtcNow().Add(-1 * time.Second)
 }
 
-// Called on every load balancer NextEndpoint call, returns the suggested weights
+// AdjustWeights: Called on every load balancer NextEndpoint call, returns the suggested weights
 // on every call, can adjust weights if needed.
 func (fsm *FSMHandler) AdjustWeights() ([]SuggestedWeight, error) {
 	// In this case adjusting weights would have no effect, so do nothing

@@ -28,7 +28,7 @@ type Options struct {
 	ErrorFormatter errors.Formatter
 }
 
-// Accepts requests, round trips it to the endpoint, and writes back the response.
+// ServeHTTP: Accepts requests, round trips it to the endpoint, and writes back the response.
 func (p *Proxy) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	err := p.proxyRequest(w, r)
 	if err == nil {
@@ -49,12 +49,12 @@ func (p *Proxy) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// Creates a proxy with a given router
+// NewProxy: Creates a proxy with a given router
 func NewProxy(router route.Router) (*Proxy, error) {
 	return NewProxyWithOptions(router, Options{})
 }
 
-// Creates reverse proxy that acts like http request handler
+// NewProxyWithOptions: Creates reverse proxy that acts like http request handler
 func NewProxyWithOptions(router route.Router, o Options) (*Proxy, error) {
 	o, err := validateOptions(o)
 	if err != nil {

@@ -175,7 +175,7 @@ func (l *HttpLocation) GetObserverChain() *middleware.ObserverChain {
 	return l.observerChain
 }
 
-// Round trips the request to one of the endpoints and returns the response.
+// RoundTrip: Round trips the request to one of the endpoints and returns the response.
 func (l *HttpLocation) RoundTrip(req request.Request) (*http.Response, error) {
 	// Get options and transport as one single read transaction.
 	// Options and transport may change if someone calls SetOptions

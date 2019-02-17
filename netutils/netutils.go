@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-// Provides update safe copy by avoiding
+// CopyUrl: Provides update safe copy by avoiding
 // shallow copying certain fields (like user data)
 func CopyUrl(in *url.URL) *url.URL {
 	out := new(url.URL)
@@ -51,7 +51,7 @@ func RawURL(request *http.Request) string {
 	return strings.Join([]string{request.URL.Scheme, "://", request.URL.Host, request.RequestURI}, "")
 }
 
-// Copies http headers from source to destination
+// CopyHeaders: Copies http headers from source to destination
 // does not overide, but adds multiple headers
 func CopyHeaders(dst, src http.Header) {
 	for k, vv := range src {
@@ -61,7 +61,7 @@ func CopyHeaders(dst, src http.Header) {
 	}
 }
 
-// Determines whether any of the header names is present
+// HasHeaders: Determines whether any of the header names is present
 // in the http headers
 func HasHeaders(names []string, headers http.Header) bool {
 	for _, h := range names {
@@ -72,7 +72,7 @@ func HasHeaders(names []string, headers http.Header) bool {
 	return false
 }
 
-// Removes the header with the given names from the headers map
+// RemoveHeaders removes the header with the given names from the headers map
 func RemoveHeaders(names []string, headers http.Header) {
 	for _, h := range names {
 		headers.Del(h)
@@ -87,7 +87,7 @@ func MustParseUrl(inUrl string) *url.URL {
 	return u
 }
 
-// Standard parse url is very generous,
+// ParseUrl: Standard parse url is very generous,
 // parseUrl wrapper makes it more strict
 // and demands scheme and host to be set
 func ParseUrl(inUrl string) (*url.URL, error) {

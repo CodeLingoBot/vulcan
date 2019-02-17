@@ -155,7 +155,7 @@ func (rr *RoundRobin) AddEndpoint(endpoint endpoint.Endpoint) error {
 	return rr.AddEndpointWithOptions(endpoint, EndpointOptions{})
 }
 
-// In case if endpoint is already present in the load balancer, returns error
+// AddEndpointWithOptions: In case if endpoint is already present in the load balancer, returns error
 func (r *RoundRobin) AddEndpointWithOptions(endpoint endpoint.Endpoint, options EndpointOptions) error {
 	r.mutex.Lock()
 	defer r.mutex.Unlock()

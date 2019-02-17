@@ -54,7 +54,7 @@ func VariableToMapper(variable string) (MapperFn, error) {
 	return MakeMapper(tokenMapper, RequestToCount), nil
 }
 
-// Make mapper constructs the mapper function out of two functions - token mapper and amount mapper
+// MakeMapper: Make mapper constructs the mapper function out of two functions - token mapper and amount mapper
 func MakeMapper(t TokenMapperFn, a AmountMapperFn) MapperFn {
 	return func(r request.Request) (string, int64, error) {
 		token, err := t(r)
@@ -88,19 +88,19 @@ func RequestToCount(req request.Request) (int64, error) {
 	return 1, nil
 }
 
-// Maps request to it's size in bytes
+// RequestToBytes: Maps request to it's size in bytes
 func RequestToBytes(req request.Request) (int64, error) {
 	return req.GetBody().TotalSize()
 }
 
-// MakeTokenMapperByHeader creates a TokenMapper that maps the incoming request to the header value.
+// MakeRequestToHeader: creates a TokenMapper that maps the incoming request to the header value.
 func MakeRequestToHeader(header string) TokenMapperFn {
 	return func(req request.Request) (string, error) {
 		return req.GetHttpRequest().Header.Get(header), nil
 	}
 }
 
-// Converts varaiable string to a mapper function used in limiters
+// MakeTokenMapperFromVariable: Converts varaiable string to a mapper function used in limiters
 func MakeTokenMapperFromVariable(variable string) (TokenMapperFn, error) {
 	if variable == "client.ip" {
 		return RequestToClientIp, nil
